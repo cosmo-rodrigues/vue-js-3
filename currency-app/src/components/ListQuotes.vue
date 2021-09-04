@@ -4,8 +4,8 @@
       <tr>
         <th>Código</th>
         <th>Nome</th>
-        <th>Mínimo</th>
         <th>Máximo</th>
+        <th>Mínimo</th>
         <th>Variação</th>
         <th></th>
       </tr>
@@ -18,38 +18,44 @@
         <td>{{ quote.low }}</td>
         <td>
           <span
-            :class="[
-              'label', 'label-rounded', 'text-small',
-              {'label-error': quote.pctChange < 0, 'label-success': quote.pctChange > 0}
-            ]"
+            class="label label-rounded text-small"
+            :class="{
+              'label-error': quote.pctChange < 0,
+              'label-success': quote.pctChange > 0,
+            }"
           >
             {{ quote.pctChange }} %
           </span>
         </td>
-        <th>
+        <td>
           <a
             v-if="!listenQuotes.includes(key)"
+            class="btn btn-primary btn-sm tooltip tooltip-left"
             data-tooltip="Seguir"
             @click="$emit('listen', key)"
-            class="btn btn-primary btn-sm tooltip tooltip-left"
           >
-            <i class="icon icon-plus"/>
+            <i class="icon icon-plus"></i>
           </a>
-        </th>
+          <a
+            v-else
+            class="btn btn-error btn-sm tooltip tooltip-left"
+            data-tooltip="Remover"
+            @click="$emit('unlisten', key)"
+          >
+            <i class="icon icon-minus"></i>
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
+
 <script>
 export default {
   props: {
-    quotes: {
-      type: Object, required: true,
-    },
-    listenQuotes: {
-      type: Array, required: true,
-    }
+    quotes: { type: Object, required: true },
+    listenQuotes: { type: Array, required: true },
   },
-  emits: ['listen'],
+  emits: ['listen', 'unlisten']
 };
 </script>

@@ -1,3 +1,7 @@
+# Projeto
+https://github.com/the-switch-case/vue-3-composition-api
+### Disponível no youtube
+https://youtu.be/95Hl6gyoWhM
 # currency-app
 
 ## Project setup
