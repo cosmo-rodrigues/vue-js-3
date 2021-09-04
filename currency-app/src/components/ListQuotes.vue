@@ -26,7 +26,16 @@
             {{ quote.pctChange }} %
           </span>
         </td>
-        <th></th>
+        <th>
+          <a
+            v-if="!listenQuotes.includes(key)"
+            data-tooltip="Seguir"
+            @click="$emit('listen', key)"
+            class="btn btn-primary btn-sm tooltip tooltip-left"
+          >
+            <i class="icon icon-plus"/>
+          </a>
+        </th>
       </tr>
     </tbody>
   </table>
@@ -37,6 +46,10 @@ export default {
     quotes: {
       type: Object, required: true,
     },
-  }
-}
+    listenQuotes: {
+      type: Array, required: true,
+    }
+  },
+  emits: ['listen'],
+};
 </script>
