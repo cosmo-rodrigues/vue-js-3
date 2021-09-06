@@ -23,7 +23,7 @@
         >
           <div class="card-header">
             <div class="card-title h5">{{ episode.name }}</div>
-            <div class="card-subtitle text-gray">{{ episode.episode }}</div>
+            <div class="card-subtitle text-dark">{{ episode.episode }}</div>
             <div>Released at {{ episode.air_date }}</div>
           </div>
           <div class="card-footer d-flex">

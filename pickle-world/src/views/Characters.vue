@@ -30,7 +30,7 @@
           </div>
           <div class="card-header">
             <div class="card-title h5">{{ character.name }}</div>
-            <div class="card-subtitle text-gray">{{ character.species }}</div>
+            <div class="card-subtitle text-dark">{{ character.species }}</div>
           </div>
           <div class="card-footer d-flex">
             <button class="btn btn-primary">
