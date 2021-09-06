@@ -53,12 +53,14 @@ export function getAllEpisodes() {
     url: "https://rickandmortyapi.com/graphql",
     data: {
       query: `
-        character(id: 1) {
-          episode {
-            id,
-            name,
-            created,
-            air_date,
+        {
+          episodes{
+            results {
+              id,
+              name,
+              episode,
+              air_date
+            }
           }
         }
       `,

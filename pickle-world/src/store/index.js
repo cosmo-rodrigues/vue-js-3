@@ -63,10 +63,7 @@ const episodes = {
       context.commit("SET_LOADING_STATUS", true);
       const result = await api.getAllEpisodes();
       context.commit("SET_LOADING_STATUS", false);
-      context.commit(
-        "GET_ALL_EPISODES",
-        result.data.data.character.episodes.results
-      );
+      context.commit("GET_ALL_EPISODES", result.data.data.episodes.results);
     },
     async getEpisodeById(context, id) {
       context.commit("SET_LOADING_STATUS", true);

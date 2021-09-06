@@ -12,10 +12,25 @@ export default {
 </script>
 
 <style>
+a {
+  text-decoration: none !important;
+  transform: 0.5;
+}
+a:hover {
+  color: #ffffff !important;
+  cursor: pointer;
+}
+button {
+  border-radius: 10px !important;
+  color: #000;
+}
 .card {
   border-radius: 25px !important;
+  flex-flow: column nowrap;
+  justify-content: center;
   margin: 5px 5px;
   max-width: 300px !important;
+  color: #000;
 }
 .card-footer {
   justify-content: flex-end !important;
