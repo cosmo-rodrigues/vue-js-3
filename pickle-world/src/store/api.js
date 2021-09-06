@@ -11,7 +11,9 @@ export function getAllChacters() {
           results {
             id,
             name,
-            image
+            image,
+            status,
+            species,
           }
         }
       }
@@ -38,6 +40,25 @@ export function getChacterById(id) {
               name,
               episode,
             }
+          }
+        }
+      `,
+    },
+  });
+}
+
+export function getAllEpisodes() {
+  return axios({
+    method: "POST",
+    url: "https://rickandmortyapi.com/graphql",
+    data: {
+      query: `
+        character(id: 1) {
+          episode {
+            id,
+            name,
+            created,
+            air_date,
           }
         }
       `,

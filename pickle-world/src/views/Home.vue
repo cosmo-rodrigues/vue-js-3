@@ -1,24 +1,19 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="hero pt-2">
+    <section class="navbar-section pt-2 search">
+      <div class="input-group input-inline">
+        <input type="text" class="form-input" placeholder="Type to search" />
+      </div>
+    </section>
+    <div class="hero-body">
+      <h1>Hero title</h1>
+      <p>This is a hero example</p>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-import { mapActions } from "vuex";
-
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
-  },
-  methods: {
-    ...mapActions(["getAllChacters"]),
-  },
-  mounted() {
-    this.getAllChacters();
-  },
 };
 </script>
