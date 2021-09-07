@@ -1,4 +1,9 @@
-# pickle-world
+# Pickle World
+
+### A multiverse of pure madness
+
+This app was developed using Vue JS 3, Vuex, Axios and GraphQL API.
+This is my very first application in Vue. I hope you enjoy it.
 
 ## Project setup
 ```

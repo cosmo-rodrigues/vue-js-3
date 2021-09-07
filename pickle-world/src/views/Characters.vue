@@ -1,17 +1,17 @@
 <template>
+  <section class="navbar-section pt-2 search">
+    <div class="input-group input-inline">
+      <input
+        type="text"
+        v-model="query"
+        class="form-input"
+        placeholder="Type to search"
+      />
+    </div>
+  </section>
   <div class="hero pt-2">
-    <section class="navbar-section pt-2 search">
-      <div class="input-group input-inline">
-        <input
-          type="text"
-          v-model="query"
-          class="form-input"
-          placeholder="Type to search"
-        />
-      </div>
-    </section>
     <div class="hero-body container">
-      <h1>List of characters</h1>
+      <h1>Characters</h1>
       <div v-if="characters.loading">
         <CharacterSkeletor />
       </div>
@@ -19,9 +19,9 @@
         <div v-if="characters.loading"></div>
         <div
           v-else
-          class="card column col-3 d-flex"
-          :key="character.id"
           v-for="character in filterSearch"
+          class="card column col-6 d-flex"
+          :key="character.id"
         >
           <div class="card-image text-center">
             <img
@@ -46,20 +46,24 @@
         </div>
       </div>
     </div>
+    <Pagination class="text-center" :info="info" />
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import CharacterSkeletor from "../components/CharacterSkeletor.vue";
+import Pagination from "../components/Pagination.vue";
 
 export default {
   name: "Character",
   components: {
+    Pagination,
     CharacterSkeletor,
   },
   data() {
     return {
+      info: "",
       query: "",
     };
   },
@@ -69,7 +73,7 @@ export default {
   computed: {
     ...mapState(["characters"]),
     filterSearch() {
-      return this.characters.characters.filter((characters) => {
+      return this.characters.characters?.results?.filter((characters) => {
         return characters?.name
           ?.toLowerCase()
           .includes(this.query.toLowerCase());
@@ -78,6 +82,9 @@ export default {
   },
   mounted() {
     this.getAllChacters();
+  },
+  updated() {
+    this.info = this.characters.characters?.info;
   },
 };
 </script>

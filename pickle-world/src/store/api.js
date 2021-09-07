@@ -2,11 +2,18 @@ import axios from "axios";
 
 const API_URL = "https://rickandmortyapi.com/graphql";
 
-export function getAllChacters() {
+export function getAllChacters(pageId) {
+  if (!pageId) pageId = 1;
   return axios.post(API_URL, {
     query: `
     {
-      characters {
+      characters(page: ${pageId}) {
+        info {
+          next,
+          prev,
+          count,
+          pages
+        }
         results {
           id,
           name,
@@ -39,11 +46,26 @@ export function getChacterById(id) {
           location {
             id,
             name,
+            type,
+            dimension,
+            residents {
+              id,
+              name,
+              status,
+              species,
+
+            }
           }
           origin {
             id,
             name,
+            type,
             dimension,
+            residents {
+              id,
+              status,
+              species,
+            }
           }
         }
       }

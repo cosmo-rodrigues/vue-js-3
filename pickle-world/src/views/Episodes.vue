@@ -1,15 +1,15 @@
 <template>
+  <section class="navbar-section pt-2 search">
+    <div class="input-inline">
+      <input
+        type="text"
+        v-model="query"
+        class="form-input"
+        placeholder="Type to search"
+      />
+    </div>
+  </section>
   <div class="hero pt-2">
-    <section class="search">
-      <div class="input-inline">
-        <input
-          type="text"
-          v-model="query"
-          class="form-input"
-          placeholder="Type to search"
-        />
-      </div>
-    </section>
     <div class="hero-body">
       <h1>Episodes</h1>
       <div v-if="episodes.loading">
@@ -18,10 +18,10 @@
       <div class="columns d-flex">
         <div v-if="episodes.loading"></div>
         <div
-          v-else
-          class="card column col-3 d-flex"
-          :key="episode.id"
+          class="card column col-6 d-flex"
           v-for="episode in filterSearch"
+          :key="episode.id"
+          v-else
         >
           <div class="card-header">
             <div class="card-title text-ligth h5">{{ episode.name }}</div>

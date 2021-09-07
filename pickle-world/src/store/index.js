@@ -19,11 +19,11 @@ const characters = {
     },
   },
   actions: {
-    async getAllChacters(context) {
+    async getAllChacters(context, pageId) {
       context.commit("SET_LOADING_STATUS", true);
-      const result = await api.getAllChacters();
+      const result = await api.getAllChacters(pageId);
       context.commit("SET_LOADING_STATUS", false);
-      context.commit("GET_ALL_CHARACTERS", result.data.data.characters.results);
+      context.commit("GET_ALL_CHARACTERS", result.data.data.characters);
     },
     async getChacterById(context, id) {
       context.commit("SET_LOADING_STATUS", true);

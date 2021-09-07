@@ -1,5 +1,5 @@
 <template>
-  <div class="hero pt-2">
+  <div class="hero">
     <div class="hero-body">
       <h1>The Picle World</h1>
       <p>Developed using The Rick and Morty API from</p>
