@@ -1,15 +1,13 @@
 <template>
   <div class="hero pt-2">
     <div class="hero-body">
-      <h1>Episode Detail</h1>
-      <h1>{{ id }}</h1>
+      <h1>Episode {{ id }}</h1>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
-import { useRoute } from "vue-router";
 
 export default {
   name: "EpisodeDetail",
@@ -23,20 +21,14 @@ export default {
     ...mapActions(["getEpisodeById"]),
   },
   computed: {
-    ...mapState(["episodes"]),
-    filterSearch() {
-      return this.episodes.episodes.filter((episode) => {
-        return episode?.name?.toLowerCase().includes(this.query.toLowerCase());
-      });
-    },
+    ...mapState(["episode"]),
   },
-  beforeCreate() {
-    const route = useRoute();
-    const id = route.params.id;
+  created() {
+    const id = this.$route.params.id;
     this.id = id;
   },
   mounted() {
-    this.getEpisodeById(1);
+    this.getEpisodeById(this.id);
   },
   beforeMount() {
     console.log("ID: ", this.id);

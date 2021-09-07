@@ -12,25 +12,29 @@
     </section>
     <div class="hero-body container">
       <h1>List of characters</h1>
-      <div v-if="characters.loading" class="loading loading-lg"></div>
+      <div v-if="characters.loading">
+        <CharacterSkeletor />
+      </div>
       <div class="columns d-flex">
         <div v-if="characters.loading"></div>
         <div
           v-else
           class="card column col-3 d-flex"
-          :key="character"
+          :key="character.id"
           v-for="character in filterSearch"
         >
           <div class="card-image text-center">
             <img
-              width="300"
+              width="350"
               :src="character.image"
               class="img-responsive mt-1"
             />
           </div>
           <div class="card-header">
-            <div class="card-title h5">{{ character.name }}</div>
-            <div class="card-subtitle text-dark">{{ character.species }}</div>
+            <div class="card-title text-light h5">{{ character.name }}</div>
+            <div class="card-subtitle text-success">
+              {{ character.species }}
+            </div>
           </div>
           <div class="card-footer d-flex">
             <button class="btn btn-primary">
@@ -47,9 +51,13 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import CharacterSkeletor from "../components/CharacterSkeletor.vue";
 
 export default {
   name: "Character",
+  components: {
+    CharacterSkeletor,
+  },
   data() {
     return {
       query: "",

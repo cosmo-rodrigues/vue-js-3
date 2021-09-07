@@ -4,7 +4,7 @@ import * as api from "../store/api";
 const characters = {
   state: {
     characters: [],
-    character: [],
+    character: {},
     loading: false,
   },
   mutations: {
@@ -29,7 +29,7 @@ const characters = {
       context.commit("SET_LOADING_STATUS", true);
       const result = await api.getChacterById(id);
       context.commit("SET_LOADING_STATUS", false);
-      context.commit("GET_CHARACTER_BY_ID", result.data.data.character.results);
+      context.commit("GET_CHARACTER_BY_ID", result.data.data.character);
     },
   },
   getters: {
@@ -44,7 +44,7 @@ const characters = {
 const episodes = {
   state: {
     episodes: [],
-    episode: [],
+    episode: {},
     loading: false,
   },
   mutations: {
@@ -63,16 +63,13 @@ const episodes = {
       context.commit("SET_LOADING_STATUS", true);
       const result = await api.getAllEpisodes();
       context.commit("SET_LOADING_STATUS", false);
-      context.commit("GET_ALL_EPISODES", result.data.data.episodes.results);
+      context.commit("GET_ALL_EPISODES", result.data.data.character.episode);
     },
     async getEpisodeById(context, id) {
       context.commit("SET_LOADING_STATUS", true);
       const result = await api.getEpisodeById(id);
       context.commit("SET_LOADING_STATUS", false);
-      context.commit(
-        "GET_EPISODE_BY_ID",
-        result.data.data.episodesByIds.results
-      );
+      context.commit("GET_EPISODE_BY_ID", result.data.data.episode);
     },
   },
   getters: {

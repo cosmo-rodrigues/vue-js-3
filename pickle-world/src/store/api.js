@@ -1,92 +1,89 @@
 import axios from "axios";
 
+const API_URL = "https://rickandmortyapi.com/graphql";
+
 export function getAllChacters() {
-  return axios({
-    method: "POST",
-    url: "https://rickandmortyapi.com/graphql",
-    data: {
-      query: `
-      {
-        characters {
-          results {
-            id,
-            name,
-            image,
-            status,
-            species,
-          }
+  return axios.post(API_URL, {
+    query: `
+    {
+      characters {
+        results {
+          id,
+          name,
+          image,
+          status,
+          species,
         }
       }
-      `,
-    },
+    }
+    `,
   });
 }
 
 export function getChacterById(id) {
-  return axios({
-    method: "POST",
-    url: "https://rickandmortyapi.com/graphql",
-    data: {
-      query: `
-        {
-          charactersByIds(ids: ${id}) {
+  return axios.post(API_URL, {
+    query: `
+      {
+        character(id: ${id}) {
+          id,
+          name,
+          image,
+          gender,
+          status,
+          species,
+          episode {
             id,
             name,
-            image,
-            gender,
-            status,
-            episode {
-              id,
-              name,
-              episode,
-            }
+            episode,
+          }
+          location {
+            id,
+            name,
+          }
+          origin {
+            id,
+            name,
+            dimension,
           }
         }
-      `,
-    },
+      }
+    `,
   });
 }
 
 export function getAllEpisodes() {
-  return axios({
-    method: "POST",
-    url: "https://rickandmortyapi.com/graphql",
-    data: {
-      query: `
-        {
-          episodes{
-            results {
-              id,
-              name,
-              episode,
-              air_date
-            }
+  return axios.post(API_URL, {
+    query: `
+      {
+        character(id: ${1}) {
+          episode {
+            id,
+            name,
+            episode,
+            air_date,
           }
         }
-      `,
-    },
+      }
+    `,
   });
 }
 
 export function getEpisodeById(id) {
-  return axios({
-    method: "POST",
-    url: "https://rickandmortyapi.com/graphql",
-    data: {
-      query: `
-        {
-          episodesByIds(ids: ${id}) {
+  return axios.post(API_URL, {
+    query: `
+      {
+        episode(id: ${id}) {
+          id,
+          name,
+          episode,
+          air_date,
+          characters {
             id,
             name,
-            episode,
-            characters {
-              id,
-              name,
-              image,
-            }
+            image,
           }
         }
-      `,
-    },
+      }
+    `,
   });
 }
